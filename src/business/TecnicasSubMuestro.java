@@ -5,6 +5,7 @@
  */
 package business;
 
+import java.util.Arrays;
 import model.Cuadricula;
 
 /**
@@ -55,6 +56,29 @@ public class TecnicasSubMuestro {
         return cMedia;
     }
     
+    public static Cuadricula subMuestroMediana(Cuadricula cuadricula){
+        int filas = cuadricula.getX()/cuadricula.getLado();
+        int columnas = cuadricula.getY()/cuadricula.getLado();
+        Cuadricula cMediana = new Cuadricula(filas, columnas, false);
+        int flagI, flagJ;
+        
+        flagI = 0;
+        for (int i = 0; i < cuadricula.getMatriz().length; i=i+cuadricula.getLado()) {
+            flagJ = 0;
+            for (int j = 0; j < cuadricula.getMatriz()[0].length; j=j+cuadricula.getLado()) {
+                cMediana.getMatriz()[flagI][flagJ] = mediana(
+                                elementosSubMatriz(
+                                            cuadricula.getMatriz(), 
+                                            i, j, cuadricula.getLado())
+                            );
+                flagJ++;
+            }
+            flagI++;
+        }
+        
+        return cMediana;
+    }
+    
     private static int[] elementosSubMatriz(int matriz[][], int posx, int posy, int lado){
         int arr[] = new int[lado*lado];
         
@@ -76,5 +100,18 @@ public class TecnicasSubMuestro {
         }
         promedio = promedio/elementos.length;
         return promedio;
+    }
+    
+    private static int mediana(int elementos[]){
+        Arrays.sort(elementos);
+        int mediana;
+        int index = elementos.length / 2;
+        if (elementos.length % 2 == 0) {
+            mediana = (elementos[index] + elementos[index-1])/2;
+        } else {
+            mediana = elementos[index];
+        }
+        return mediana;
+        
     }
 }

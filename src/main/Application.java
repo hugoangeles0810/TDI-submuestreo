@@ -43,6 +43,8 @@ public class Application {
             TecnicasSubMuestro.subMuestroSimple(cuadricula).imprimirMatriz();
             System.out.println("\nSubmuestreo Media");
             TecnicasSubMuestro.subMuestroMedia(cuadricula).imprimirMatriz();
+            System.out.println("\nSubmuestreo Mediana");
+            TecnicasSubMuestro.subMuestroMediana(cuadricula).imprimirMatriz();
         } else {
             System.out.println("Lado no válido");
         }
