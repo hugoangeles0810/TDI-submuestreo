@@ -1,11 +1,13 @@
 
 package main;
 
-public class Application {
+import java.util.Scanner;
+
+public class hola {
     
     private Scanner input;
 
-    public Application() {
+    public hola() {
     }
     
     
