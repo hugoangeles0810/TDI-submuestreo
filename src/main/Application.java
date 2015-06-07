@@ -41,6 +41,8 @@ public class Application {
             cuadricula.imprimirMatriz();
             System.out.println("\nSubmuestreo Simple");
             TecnicasSubMuestro.subMuestroSimple(cuadricula).imprimirMatriz();
+            System.out.println("\nSubmuestreo Media");
+            TecnicasSubMuestro.subMuestroMedia(cuadricula).imprimirMatriz();
         } else {
             System.out.println("Lado no válido");
         }

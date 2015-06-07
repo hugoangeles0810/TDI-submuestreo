@@ -31,4 +31,50 @@ public class TecnicasSubMuestro {
         
         return cSimple;
     }
+    
+    public static Cuadricula subMuestroMedia(Cuadricula cuadricula){
+        int filas = cuadricula.getX()/cuadricula.getLado();
+        int columnas = cuadricula.getY()/cuadricula.getLado();
+        Cuadricula cMedia = new Cuadricula(filas, columnas, false);
+        int flagI, flagJ;
+        
+        flagI = 0;
+        for (int i = 0; i < cuadricula.getMatriz().length; i=i+cuadricula.getLado()) {
+            flagJ = 0;
+            for (int j = 0; j < cuadricula.getMatriz()[0].length; j=j+cuadricula.getLado()) {
+                cMedia.getMatriz()[flagI][flagJ] = promedio(
+                                elementosSubMatriz(
+                                            cuadricula.getMatriz(), 
+                                            i, j, cuadricula.getLado())
+                            );
+                flagJ++;
+            }
+            flagI++;
+        }
+        
+        return cMedia;
+    }
+    
+    private static int[] elementosSubMatriz(int matriz[][], int posx, int posy, int lado){
+        int arr[] = new int[lado*lado];
+        
+        int cont = 0;
+        for (int i = posx; i < posx + lado; i++) {
+            for (int j = posy; j < posy + lado; j++) {
+                arr[cont] = matriz[i][j];
+                cont++;
+            }
+        }
+        return arr;
+    }
+    
+    private static int promedio(int elementos[]){
+        int promedio = 0;
+        
+        for (int elemento : elementos) {
+            promedio += elemento;
+        }
+        promedio = promedio/elementos.length;
+        return promedio;
+    }
 }
